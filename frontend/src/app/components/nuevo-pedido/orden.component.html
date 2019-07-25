@@ -1,0 +1,72 @@
+<div class="card-body ">
+        <h2 class="card-title text-danger">Orden</h2>
+        <ul class="list-group list-group-flush " >
+
+            <li class="list-group-item bg-warning" *ngFor="let orden of ordenes; let i = index" > 
+                <!-- mostramos la cantidad del producto  -->
+                <span [ngClass]="{'text-danger': orden.producto === 'Pizzas',
+                                  'text-success': orden.producto === 'Alitas',
+                                  'text-secondary': orden.producto === 'Refrescos',
+                                  'text-primary': orden.producto === 'Helados'
+                                }"> 
+                    {{ orden.cantidad }}
+                </span>
+                <!--mostramos el nombre del producto-->
+                <span class="badge" [ngClass]="{'badge-danger': orden.producto === 'Pizzas',
+                                                'badge-success': orden.producto === 'Alitas',
+                                                'badge-secondary': orden.producto === 'Refrescos',
+                                                'badge-primary': orden.producto === 'Helados'
+                                                }" > 
+                    {{ orden.producto }} 
+                </span> 
+                <!--mostramos el tamano del producto-->
+                <span [ngClass]="{'text-danger': orden.producto === 'Pizzas',
+                                  'text-success': orden.producto === 'Alitas',
+                                  'text-secondary': orden.producto === 'Refrescos', 
+                                  'text-primary': orden.producto === 'Helados'
+                                 }"> 
+                    {{ orden.tamano }} 
+                </span> 
+                <!--mostramos la descripcion de la orden-->
+                <span class="text-dark"> 
+                    {{ orden.descripcion }} 
+                </span>      
+                <div class="botones float-right">
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <span class="badge badge-info"> {{ orden.costo }}bs </span>
+                </div>
+            </li>
+
+        </ul>
+        <!-- input para los datos de nombre etc -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text text-white bg-info" id="inputGroup-sizing-default" >Nombre del Cliente: </span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
+                    [ngModel]="nombreCliente" (ngModelChange)="getNombreCliente($event)" >
+        </div>
+        <hr>
+
+        <h5 class="text-danger" >Factura</h5>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Nombre" [ngModel]="nombreFactura" (ngModelChange)="getNombreFactura($event)" >
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="NIT" [ngModel]="nit" (ngModelChange)="getNitFactura($event)" >
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col">
+                <h4><span class="badge badge-success">Cuenta: {{ this.cuenta }}bs </span></h4>
+                
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+                <button type="button" class="btn btn-info espacioBoton" (click)="enviarPedido()" >Enviar</button>
+            </div>
+        </div>
+</div>

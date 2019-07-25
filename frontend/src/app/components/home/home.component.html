@@ -1,0 +1,23 @@
+<div  class="card espacio" *ngFor="let pedido of pedidos" [ngClass]="{'text-white bg-warning': !pedido.estado, 'text-dark bg-light': pedido.estado }" >
+    <h5 class="card-header">Nombre: <span class="font-italic"> {{ pedido.nombreCliente }} </span> 
+        <small class="float-right text-dark " > {{ pedido.fechaHora | date:'shortTime' }} </small> 
+    </h5>
+    
+    <div class="elementos" (click)="cambiarEstado()" >
+        <div class="card-body row" *ngFor="let orden of pedido.orden">
+            <div class="col" >
+                <p class="card-text text-dark">
+                    <span class="badge" [ngClass]="{'badge-danger': orden.producto == 'pizza', 
+                                      'badge-success': orden.producto == 'alitas',
+                                      'badge-secondary': orden.producto == 'refresco',
+                                      'badge-primary': orden.producto == 'helado'}" > {{ orden.producto }} </span>
+    
+                    <span class="text-primary" *ngIf="orden.producto == 'helado' " > {{ orden.descripcion }} </span>  
+                    <span class="text-secondary" *ngIf="orden.producto == 'refresco'" > {{ orden.cantidad }} {{ orden.descripcion }} </span>  
+                    <span class="text-danger" *ngIf="orden.producto == 'pizza'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
+                    <span class="text-success" *ngIf="orden.producto == 'alitas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

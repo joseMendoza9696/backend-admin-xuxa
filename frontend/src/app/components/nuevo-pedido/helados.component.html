@@ -1,0 +1,53 @@
+
+<!-- <div class="card-body bg-secondary text-light espacio"> -->
+    <h2 class="card-title text-light"> Helados </h2>
+    <hr>
+
+    <!-- boton dropdown para cada uno de los productos -->
+    <div class="row espacio">
+        <div class="col">
+            <form class="was-validated">
+                <div class="dropdown" >
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tamaño: {{ tam }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <a class="dropdown-item" *ngFor="let pizza of tamanoHelados; let i = index" (click)="getTamano(tamanoHelados[i])"  > {{ tamanoHelados[i] }} </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col" >
+            <input type="number" class=" float-right form-control" placeholder="Cantidad" [ngModel]="cant" (ngModelChange)="getCantidad($event)" >
+        </div>
+    </div>
+    <hr>
+     <!-- campo de la descripcion de la orden a realizar -->
+     <div class="row" >
+        <div class="col">
+            <div class="mb-3">
+                <textarea class="form-control" id="validationTextarea" placeholder="Descripcion del producto" [ngModel]="des" (ngModelChange)="getDescripcion($event)" required></textarea>
+                <div class="invalid-feedback">
+                    Ingrese una descripcion del producto
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- botones de cancelar y agregar orden -->
+    <hr>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-danger" [routerLink]="['#']" >Cancelar</button>
+            <button type="submit" class="btn btn-primary espacioBoton" (click)="agregarOrden()" >Agregar</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h5> <span class="badge badge-success" >Precio: {{ precio }}bs</span> </h5>
+        </div>
+    </div>
+
