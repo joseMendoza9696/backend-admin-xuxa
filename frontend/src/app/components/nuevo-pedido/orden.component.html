@@ -70,8 +70,27 @@
                 
             </div>
             <div class="col">
-                <button type="button" class="btn btn-danger">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="cancelar()" >Cancelar</button>
                 <button type="button" class="btn btn-info espacioBoton" (click)="enviarPedido()" >Enviar</button>
             </div>
         </div>
+        <br>
+
+        <div class="row" *ngIf="cancelarOrden" >
+            <div class="alert alert-secondary" role="alert">
+                <h4 class="alert-heading">Estas seguro de cancelar la orden ?</h4>
+                <hr>
+                <div class="row">
+                    <div class="col">
+
+                        <button class="btn btn-outline-danger" [routerLink]="['#']"  >SI</button>
+                    </div>
+                    <div class="col">
+                        
+                        <button class="btn btn-outline-primary" (click)="cancelarNo()" >NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>

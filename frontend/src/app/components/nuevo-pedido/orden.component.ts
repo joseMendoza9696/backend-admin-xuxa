@@ -17,6 +17,7 @@ export class OrdenComponent implements OnInit {
   nit: number;
 
   alertaEnvio: boolean = false;
+  cancelarOrden: boolean = false;
   
   constructor( private router: Router ) { }
 
@@ -41,14 +42,15 @@ export class OrdenComponent implements OnInit {
     this.ordenes.splice(posicion,1);
   }
 
+  cancelar(){
+    this.cancelarOrden = true;
+  }
+  cancelarNo(){
+    this.cancelarOrden = false;
+  }
+
   enviarPedido(){
     
-    // if (!this.nombreCliente || !this.ordenes ) {
-    //   this.alertaEnvio = true;
-    // } else{
-    //   this.alertaEnvio = false;
-    // }
-
     const pedido = {
       cliente: this.nombreCliente,
       fecha: new Date(), 
