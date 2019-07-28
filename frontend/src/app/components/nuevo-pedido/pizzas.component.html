@@ -17,6 +17,14 @@
             </div>
         </div>
         <hr>
+
+        <!-- cantidad para las porciones -->
+        <div class="row" *ngIf="tam === 'Porcion'" >
+            <div class="col" >
+                <input type="number" class=" float-right form-control" placeholder="Cantidad" [ngModel]="cant" (ngModelChange)="getCantidad($event)" >
+            </div>
+        </div>
+        <hr *ngIf="tam === 'Porcion'" >
     
         <!-- campo de la descripcion de la orden a realizar -->
         <div class="row" >
@@ -41,7 +49,7 @@
         <hr>
         <div class="row">
             <div class="col">
-                <h5> <span class="badge badge-success" >Precio: {{ costo }}bs </span> </h5>
+                <h5> <span class="badge badge-success" >Precio: {{ precioFinal }}bs </span> </h5>
             </div>
         </div>
     

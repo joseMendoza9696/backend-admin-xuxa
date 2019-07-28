@@ -18,6 +18,9 @@ export class PizzasComponent implements OnInit {
   tam: string;
   des: string;
   costo: number;
+  cant: number;
+  prePorciones: number;
+  precioFinal: number;
 
   constructor( private router: Router ) { }
 
@@ -33,23 +36,34 @@ export class PizzasComponent implements OnInit {
         this.costo = this.precioPizza[i];
       }
     }
+    this.precioFinal = this.costo;
+    this.cant = 1;
     console.log(this.tam);
     console.log(`costo: ${this.costo}`);
   }
-  getDescripcion(valor){
+  getDescripcion(valor: string){
     this.des = valor;
     console.log(this.des);
+  }
+
+  getCantidad(porciones: number){
+    
+    if(!porciones){
+      this.cant = 1;
+    }
+    this.prePorciones = this.costo * porciones;
+    this.precioFinal = this.prePorciones;
+    this.cant = porciones;
   }
   
 
   agregarOrden(){
-    // this.orden = [ 'Pizza', this.tam, this.des, this.cant, this.costo ];
     const orden = {
       producto: 'Pizzas',
       tamano: this.tam,
       descripcion: this.des,
-      cantidad: 1,
-      costo: this.costo
+      cantidad: this.cant,
+      costo: this.precioFinal
     };
 
     console.log(orden);
@@ -58,7 +72,7 @@ export class PizzasComponent implements OnInit {
 
     this.tam = '';
     this.des = '';
-    this.costo = null;
+    this.precioFinal = null;
   }
 
 }
