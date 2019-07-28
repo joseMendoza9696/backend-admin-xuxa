@@ -32,6 +32,11 @@ export class OrdenComponent implements OnInit {
     this.nit = nit;
     console.log(this.nit);
   }
+  eliminarOrden(posicion: number){
+    console.log(posicion);
+    
+    this.ordenes.splice(posicion,1);
+  }
 
   enviarPedido(){
     const pedido = {
