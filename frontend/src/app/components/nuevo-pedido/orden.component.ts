@@ -16,6 +16,8 @@ export class OrdenComponent implements OnInit {
   nombreFactura: string;
   nit: number;
 
+  alertaEnvio: boolean = false;
+  
   constructor( private router: Router ) { }
 
   ngOnInit() { }
@@ -32,6 +34,7 @@ export class OrdenComponent implements OnInit {
     this.nit = nit;
     console.log(this.nit);
   }
+
   eliminarOrden(posicion: number){
     console.log(posicion);
     
@@ -39,6 +42,13 @@ export class OrdenComponent implements OnInit {
   }
 
   enviarPedido(){
+    
+    // if (!this.nombreCliente || !this.ordenes ) {
+    //   this.alertaEnvio = true;
+    // } else{
+    //   this.alertaEnvio = false;
+    // }
+
     const pedido = {
       cliente: this.nombreCliente,
       fecha: new Date(), 
@@ -48,9 +58,15 @@ export class OrdenComponent implements OnInit {
       cuenta: this.cuenta,
       estado: false
     }
-    
-    console.log(pedido);
-    this.router.navigate(['#']);
+
+    if (this.ordenes == 0 || !pedido.cliente ) {
+      this.alertaEnvio = true;
+      console.log(pedido);
+    } else {
+      this.alertaEnvio = false;
+      // this.router.navigate(['#']);
+      console.log(pedido);
+    }
 
   }
 

@@ -19,6 +19,7 @@ export class HeladosComponent implements OnInit {
   cant: number; // cantidad del producto
   costo: number; // costo unitario del producto
   precio: number;
+  alerta: boolean = false;
 
   constructor( private router: Router ) { }
 
@@ -52,25 +53,35 @@ export class HeladosComponent implements OnInit {
 
   }
   agregarOrden(){
-    if (this.cant === null) {
-      this.cant = 1;
-    }
-    const orden = {
-      producto: 'Helados',
-      tamano: this.tam,
-      descripcion: this.des,
-      cantidad: this.cant,
-      costo: this.precio
-    };
-    // console.log(orden);
-    this.enviarOrden.emit(orden);
-    this.router.navigate(['nuevo-pedido']);
 
-    this.des = '';
-    this.tam = '';
-    this.costo = 0;
-    this.cant = null;
-    this.precio = 0;
+    if (!this.tam) {
+      this.alerta = true;
+    } else {
+      this.alerta = false;
+
+      if (this.cant === null) {
+        this.cant = 1;
+      }
+      const orden = {
+        producto: 'Helados',
+        tamano: this.tam,
+        descripcion: this.des,
+        cantidad: this.cant,
+        costo: this.precio
+      };
+      // console.log(orden);
+      this.enviarOrden.emit(orden);
+      this.router.navigate(['nuevo-pedido']);
+  
+      this.des = '';
+      this.tam = '';
+      this.costo = 0;
+      this.cant = null;
+      this.precio = 0;
+    }
+
+
+
   
   }
 

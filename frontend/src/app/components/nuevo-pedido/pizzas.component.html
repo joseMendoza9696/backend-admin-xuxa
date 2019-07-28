@@ -2,6 +2,9 @@
         <h2 class="card-title text-light"> Pizzas </h2>
         <hr>
         <!-- boton dropdown para cada uno de los productos -->
+        <div class="alert alert-danger" role="alert" *ngIf="alerta" >
+            Debes agregar el tamaño y/o descripción del producto
+        </div>
         <div class="row espacio">
             <div class="col">
                 <form class="was-validated">
@@ -30,7 +33,7 @@
         <div class="row" >
             <div class="col">
                 <div class="mb-3">
-                    <textarea class="form-control" id="validationTextarea" placeholder="Descripcion del producto" [ngModel]="des" (ngModelChange)="getDescripcion($event)" required></textarea>
+                    <textarea class="form-control" id="validationTextarea" placeholder="Descripción de la pizza" [ngModel]="des" (ngModelChange)="getDescripcion($event)" required></textarea>
                     <div class="invalid-feedback">
                         Ingrese una descripcion del producto
                     </div>
@@ -42,7 +45,6 @@
         <hr>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-danger" [routerLink]="['/nuevo-pedido']" >Cancelar</button>
                 <button type="submit" class="btn btn-primary espacioBoton" (click)="agregarOrden()" >Agregar</button>
             </div>
         </div>

@@ -1,5 +1,10 @@
 <div class="card-body ">
         <h2 class="card-title text-danger">Orden</h2>
+        
+        <div class="alert alert-danger" role="alert" *ngIf="alertaEnvio" >
+            Agregar ordenes al pedido y/o el nombre del cliente antes de enviar
+        </div>
+
         <ul class="list-group list-group-flush " >
 
             <li class="list-group-item bg-warning" *ngFor="let orden of ordenes; let i = index" > 
@@ -44,7 +49,7 @@
                 <span class="input-group-text text-white bg-info" id="inputGroup-sizing-default" >Nombre del Cliente: </span>
             </div>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" 
-                    [ngModel]="nombreCliente" (ngModelChange)="getNombreCliente($event)" >
+                    [ngModel]="nombreCliente" (ngModelChange)="getNombreCliente($event)" required >
         </div>
         <hr>
 

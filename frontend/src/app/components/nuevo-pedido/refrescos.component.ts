@@ -15,6 +15,7 @@ export class RefrescosComponent implements OnInit {
   cant: number;
   costo: number;
   precio: number;
+  alerta: boolean = false;
 
   constructor( private router: Router ) { }
 
@@ -57,14 +58,21 @@ export class RefrescosComponent implements OnInit {
       cantidad: this.cant,
       costo: this.costo
     };
-    // console.log(orden);
-    this.enviarOrden.emit(orden);
-    this.router.navigate(['nuevo-pedido']);
 
-    this.des = '';
-    this.precio = null;
-    this.cant = null;
-    this.costo = 0;
+    if (!this.des || !this.precio) {
+      this.alerta = true;
+    } else {
+      this.alerta = false;
+      this.enviarOrden.emit(orden);
+      this.router.navigate(['nuevo-pedido']);
+  
+      this.des = '';
+      this.precio = null;
+      this.cant = null;
+      this.costo = 0;
+    }
+
+    // console.log(orden);
   }
 
 }

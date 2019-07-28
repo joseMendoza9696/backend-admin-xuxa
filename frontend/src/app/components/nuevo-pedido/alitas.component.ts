@@ -17,6 +17,7 @@ export class AlitasComponent implements OnInit {
   tam: string;
   des: string;
   costo: number;
+  alerta: boolean = false;
 
   constructor( private router: Router ) { }
 
@@ -48,12 +49,21 @@ export class AlitasComponent implements OnInit {
       cantidad: 1,
       costo: this.costo
     };
-    this.enviarOrden.emit(orden);
-    this.router.navigate(['nuevo-pedido']);
-    
-    this.tam = '';
-    this.des = '';
-    this.costo = null;
+
+    if (!this.tam || !this.des) {
+      this.alerta = true;
+    } else {
+      this.alerta = false;
+      this.enviarOrden.emit(orden);
+      this.router.navigate(['nuevo-pedido']);
+      
+      this.tam = '';
+      this.des = '';
+      this.costo = null;
+    }
+
+
+
 
   }
 

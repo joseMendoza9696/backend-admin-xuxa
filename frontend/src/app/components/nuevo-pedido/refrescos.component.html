@@ -4,10 +4,15 @@
     <hr>
 
     <!-- campo de la descripcion de la orden a realizar -->
+
+    <div class="alert alert-danger" role="alert" *ngIf="alerta" >
+        Agregar la bebida que consumira y/o el precio de la bebida
+    </div>
+
     <div class="row" >
         <div class="col">
             <div class="mb-3">
-                <textarea class="form-control" id="validationTextarea" placeholder="Descripcion del producto" [ngModel]="des" (ngModelChange)="getDescripcion($event)" required></textarea>
+                <textarea class="form-control" id="validationTextarea" placeholder="Bebida a consumir ..." [ngModel]="des" (ngModelChange)="getDescripcion($event)" required></textarea>
                 <div class="invalid-feedback">
                     Ingrese una descripcion del producto
                 </div>
@@ -17,21 +22,20 @@
 
     <div class="row">
         <div class="col" >
+            <input type="number" class=" float-right form-control" placeholder="Precio de la bebida" [ngModel]="precio" (ngModelChange)="getPrecio($event)" >
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" >
             <input type="number" class=" float-right form-control" placeholder="Cantidad" [ngModel]="cant" (ngModelChange)="getCantidad($event)" >
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col" >
-            <input type="number" class=" float-right form-control" placeholder="Precio" [ngModel]="precio" (ngModelChange)="getPrecio($event)" >
-        </div>
-    </div>
         
     <!-- botones de cancelar y agregar orden -->
     <hr>
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-danger" [routerLink]="['#']" >Cancelar</button>
             <button type="submit" class="btn btn-primary espacioBoton" (click)="agregarOrden()" >Agregar</button>
         </div>
     </div>

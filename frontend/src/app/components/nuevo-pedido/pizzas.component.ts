@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class PizzasComponent implements OnInit {
   cant: number;
   prePorciones: number;
   precioFinal: number;
+
+  alerta: boolean = false;
 
   constructor( private router: Router ) { }
 
@@ -58,6 +61,7 @@ export class PizzasComponent implements OnInit {
   
 
   agregarOrden(){
+
     const orden = {
       producto: 'Pizzas',
       tamano: this.tam,
@@ -66,13 +70,31 @@ export class PizzasComponent implements OnInit {
       costo: this.precioFinal
     };
 
-    console.log(orden);
-    this.enviarOrden.emit(orden);
-    this.router.navigate(['nuevo-pedido']);
+    if (!this.tam || !this.des ) {
+      if (this.tam === 'Porcion' ) {
+        this.alerta = false;
+        
+        console.log(orden);
+        this.enviarOrden.emit(orden);
+        this.router.navigate(['nuevo-pedido']);
+        this.tam = '';
+        this.des = '';
+        this.precioFinal = null;
+      } else {
+        this.alerta = true
+      }
+    } else {
+      this.alerta = false;
 
-    this.tam = '';
-    this.des = '';
-    this.precioFinal = null;
+      console.log(orden);
+      this.enviarOrden.emit(orden);
+      this.router.navigate(['nuevo-pedido']);
+      this.tam = '';
+      this.des = '';
+      this.precioFinal = null;
+      this.alerta = false;
+    }
+
   }
 
 }
