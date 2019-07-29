@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
+import { NodeApiService } from '../../services/node-api.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class OrdenComponent implements OnInit {
   alertaEnvio: boolean = false;
   cancelarOrden: boolean = false;
   
-  constructor( private router: Router ) { }
+  constructor( private router: Router, private nodeService: NodeApiService ) { }
 
   ngOnInit() { }
 
@@ -52,22 +53,27 @@ export class OrdenComponent implements OnInit {
   enviarPedido(){
     
     const pedido = {
-      cliente: this.nombreCliente,
-      fecha: new Date(), 
-      ordenes: this.ordenes,
+      nombreCliente: this.nombreCliente,
+      fechaHora: new Date(), 
+      orden: this.ordenes,
       nit: this.nit,
-      factura: this.nombreFactura,
-      cuenta: this.cuenta,
+      nombre: this.nombreFactura,
+      cuentaTotal: this.cuenta,
       estado: false
     }
 
-    if (this.ordenes == 0 || !pedido.cliente ) {
+    if (this.ordenes == 0 || !this.nombreCliente ) {
       this.alertaEnvio = true;
       console.log(pedido);
     } else {
       this.alertaEnvio = false;
-      // this.router.navigate(['#']);
-      console.log(pedido);
+      // const pedJson = JSON.stringify(pedido);
+
+      this.nodeService.postPedido(pedido).subscribe( data => console.log(data) );
+      
+      this.router.navigate(['#']);
+      // console.log(pedJson);
+      // console.log(pedido);
     }
 
   }

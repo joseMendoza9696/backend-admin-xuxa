@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 const Pedido = mongoose.model('Pedido', {
-    nombreCliente: { type: String, required: true },
-    fechaHora: { type: Date, required: true },
-    orden: [{ producto: { type: String, required: true, trim: true },
-              tamano: { type: String, required: true },
-              cantidad: { type: Number, required: true,
+    nombreCliente: { type: String, require: true },
+    fechaHora: { type: Date, require: true },
+    orden: [{ producto: { type: String, trim: true, require: true },
+              tamano: { type: String },
+              cantidad: { type: Number,
                           validate(value){
                               if (value < 0) {
                                   throw new Error('La cantidad debe ser positiva');
                               }
                           } },
-              precio: { type: Number, required: true,
+              precio: { type: Number,  require: true,
                         validate(value) {
                             if (value < 0) {
                                 throw new Error('El precio debe ser positivo');
@@ -21,13 +21,13 @@ const Pedido = mongoose.model('Pedido', {
             }],
     nit: { type: String },
     nombre: { type: String },
-    cuentaTotal: { type: Number, required: true,
+    cuentaTotal: { type: Number,  require: true,
                    validate(value) {
                         if (value < 0) {
                             throw new Error('Resultado debe ser positivo');
                         }
                    }},
-    estado: { type: Boolean, required: true }
+    estado: { type: Boolean, require: true }
 });
 
 module.exports = Pedido;

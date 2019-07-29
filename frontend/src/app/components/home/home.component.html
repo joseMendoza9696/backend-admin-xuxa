@@ -4,8 +4,8 @@
     </h5>
     
     <div class="elementos" (click)="cambiarEstado()" >
-        <div class="card-body row" *ngFor="let orden of pedido.orden">
-            <div class="col" >
+        <div class="card-body row" *ngFor="let orden of pedido.orden"  >
+            <div class="col-8"   >
                 <p class="card-text text-dark">
                     <span class="badge" [ngClass]="{'badge-danger': orden.producto == 'pizza', 
                                       'badge-success': orden.producto == 'alitas',
@@ -17,6 +17,9 @@
                     <span class="text-danger" *ngIf="orden.producto == 'pizza'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
                     <span class="text-success" *ngIf="orden.producto == 'alitas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
                 </p>
+            </div>
+            <div class="col-4">
+                
             </div>
         </div>
     </div>

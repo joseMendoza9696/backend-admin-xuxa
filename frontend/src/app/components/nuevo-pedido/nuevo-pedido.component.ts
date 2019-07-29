@@ -60,7 +60,7 @@ export class NuevoPedidoComponent implements OnInit {
     // console.log('nuevo pedido:');
     // console.log(this.ordenes);
     for (let i = 0; i < this.ordenes.length; i++) {
-      this.cuenta = this.cuenta + this.ordenes[i].costo;
+      this.cuenta = this.cuenta + this.ordenes[i].precio;
     }
   }
 }

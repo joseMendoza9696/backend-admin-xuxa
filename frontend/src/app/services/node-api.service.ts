@@ -10,8 +10,14 @@ export class NodeApiService {
     console.log('Servicio listo');
   }
 
+  readonly URL: string = 'http://localhost:3000';
+
   getComandasHoy() {
-    return this.http.get('http://localhost:3000/');
-  }  
+    return this.http.get(this.URL);
+  }
+  
+  postPedido(pedido: any){
+    return this.http.post(`${this.URL}/nuevo`, pedido);
+  }
 
 }

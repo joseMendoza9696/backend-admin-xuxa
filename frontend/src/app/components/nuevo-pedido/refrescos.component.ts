@@ -54,9 +54,9 @@ export class RefrescosComponent implements OnInit {
     const orden = {
       producto: 'Refrescos',
       tamano: '',
-      descripcion: this.des,
       cantidad: this.cant,
-      costo: this.costo
+      precio: this.costo,
+      descripcion: this.des
     };
 
     if (!this.des || !this.precio) {

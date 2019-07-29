@@ -65,9 +65,9 @@ export class HeladosComponent implements OnInit {
       const orden = {
         producto: 'Helados',
         tamano: this.tam,
-        descripcion: this.des,
         cantidad: this.cant,
-        costo: this.precio
+        precio: this.precio,
+        descripcion: this.des
       };
       // console.log(orden);
       this.enviarOrden.emit(orden);

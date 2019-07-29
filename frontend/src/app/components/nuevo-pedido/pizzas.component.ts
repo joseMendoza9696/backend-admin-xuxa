@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -65,9 +64,9 @@ export class PizzasComponent implements OnInit {
     const orden = {
       producto: 'Pizzas',
       tamano: this.tam,
-      descripcion: this.des,
       cantidad: this.cant,
-      costo: this.precioFinal
+      precio: this.precioFinal,
+      descripcion: this.des
     };
 
     if (!this.tam || !this.des ) {

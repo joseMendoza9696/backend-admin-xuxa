@@ -45,9 +45,9 @@ export class AlitasComponent implements OnInit {
     const orden = {
       producto: 'Alitas',
       tamano: this.tam,
-      descripcion: this.des,
       cantidad: 1,
-      costo: this.costo
+      precio: this.costo,
+      descripcion: this.des
     };
 
     if (!this.tam || !this.des) {
