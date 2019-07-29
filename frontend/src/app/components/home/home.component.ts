@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
       .subscribe( data => {
         this.pedidos = data;
         console.log(this.pedidos);
-        
       });
   }
 

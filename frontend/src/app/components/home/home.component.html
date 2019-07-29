@@ -4,18 +4,23 @@
     </h5>
     
     <div class="elementos" (click)="cambiarEstado()" >
+        <!-- sentencia for de los pedidos recibidos del servidor -->
         <div class="card-body row" *ngFor="let orden of pedido.orden"  >
             <div class="col-8"   >
                 <p class="card-text text-dark">
-                    <span class="badge" [ngClass]="{'badge-danger': orden.producto == 'pizza', 
-                                      'badge-success': orden.producto == 'alitas',
-                                      'badge-secondary': orden.producto == 'refresco',
-                                      'badge-primary': orden.producto == 'helado'}" > {{ orden.producto }} </span>
+                    <span [ngClass]="{'text-danger': orden.producto == 'Pizzas', 
+                                        'text-success': orden.producto == 'Alitas',
+                                        'text-secondary': orden.producto == 'Refrescos',
+                                        'text-primary': orden.producto == 'Helados'}" > {{ orden.cantidad }} </span>
+                    <span class="badge" [ngClass]="{'badge-danger': orden.producto == 'Pizzas', 
+                                      'badge-success': orden.producto == 'Alitas',
+                                      'badge-secondary': orden.producto == 'Refrescos',
+                                      'badge-primary': orden.producto == 'Helados'}" > {{ orden.producto }} </span>
     
-                    <span class="text-primary" *ngIf="orden.producto == 'helado' " > {{ orden.descripcion }} </span>  
-                    <span class="text-secondary" *ngIf="orden.producto == 'refresco'" > {{ orden.cantidad }} {{ orden.descripcion }} </span>  
-                    <span class="text-danger" *ngIf="orden.producto == 'pizza'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
-                    <span class="text-success" *ngIf="orden.producto == 'alitas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
+                    <span class="text-primary" *ngIf="orden.producto == 'Helados' " >  {{ orden.tamano }} {{ orden.descripcion }} </span>  
+                    <span class="text-secondary" *ngIf="orden.producto == 'Refrescos'" > {{ orden.descripcion }} </span>  
+                    <span class="text-danger" *ngIf="orden.producto == 'Pizzas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
+                    <span class="text-success" *ngIf="orden.producto == 'Alitas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
                 </p>
             </div>
             <div class="col-4">

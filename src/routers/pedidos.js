@@ -6,11 +6,12 @@ const hoy = new Date();
 
 // const hoy2 = new Date(ano,mes,dia);
 
+// devuelve las comandas del dia de hoy
 router.get('/', async(req,res) => {
     const ano = hoy.getFullYear();
     const mes = hoy.getMonth();
     const dia = hoy.getDate();
-    const hoy2 = new Date(2019,6,4,0,0,0);
+    const hoy2 = new Date(ano,mes,dia,0,0,0);
     try {
         const pedidos = await Pedido.find({ fechaHora: { $gte: hoy2 } });
         res.send(pedidos);
@@ -33,9 +34,6 @@ router.get('/nuevo/:id', async(req,res) => {
         res.status(400).send(error);
     }
 });
-
-// router.patch();
-// router.delete();
 
 router.get('/resumen-dia', async(req,res) => {
     const ano = hoy.getFullYear();
