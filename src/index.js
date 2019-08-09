@@ -6,8 +6,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(pedidoRouter);
+// permite que podamos hacer peticiones desde otro server. siempre debe estar antes de las rutas
 app.use(cors({ origin: 'http://localhost:4200' }));
+
+app.use(pedidoRouter);
+
+
+
 
 app.listen(port, () => {
     console.log(`El servidor esta escuchado en el puerto ${port}`);
