@@ -3,10 +3,11 @@
         <small class="float-right text-dark " > {{ pedido.fechaHora | date:'shortTime' }} </small> 
     </h5>
     
-    <div class="elementos" (click)="cambiarEstado()" >
+    <div class="elementos">
         <!-- sentencia for de los pedidos recibidos del servidor -->
-        <div class="card-body row" *ngFor="let orden of pedido.orden"  >
-            <div class="col-8"   >
+        <div class="card-body row" (click)="cambiarEstado( pedido._id )" *ngFor="let orden of pedido.orden" >
+            <!-- div de las ordenes del pedido -->
+            <div class="col"   >
                 <p class="card-text text-dark">
                     <span [ngClass]="{'text-danger': orden.producto == 'Pizzas', 
                                         'text-success': orden.producto == 'Alitas',
@@ -23,9 +24,7 @@
                     <span class="text-success" *ngIf="orden.producto == 'Alitas'" > {{ orden.tamano }} {{ orden.descripcion }} </span>  
                 </p>
             </div>
-            <div class="col-4">
-                
-            </div>
-        </div>
+        </div> 
     </div>
+
 </div>

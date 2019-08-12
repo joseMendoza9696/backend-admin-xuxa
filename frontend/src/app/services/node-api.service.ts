@@ -22,4 +22,9 @@ export class NodeApiService {
     return this.http.post(`${this.URL}/nuevo`, pedido);
   }
 
+  // actualizar estado del pedido
+  patchEstado( id:any ){
+    return this.http.patch(`${this.URL}/${id}`, { "estado": true });
+  }
+
 }

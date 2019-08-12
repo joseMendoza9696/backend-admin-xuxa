@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   pedidos: any;
 
   constructor(private nodeService: NodeApiService) { 
+    
     this.nodeService.getComandasHoy()
       .subscribe( data => {
         this.pedidos = data;
@@ -21,8 +22,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  cambiarEstado() {
-    
+  cambiarEstado(id: any) {
+    // console.log(id);
+
+    this.nodeService.patchEstado(id)
+      .subscribe( data => {
+        console.log(data);
+      });
+
   }
 
 }
