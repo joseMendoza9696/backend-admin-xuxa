@@ -1,1 +1,40 @@
-<p>resumen-dia works!</p>
+
+<table class="table table-striped" *ngIf="flag" >
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Pedidos</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Cuenta</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let pedido of pedidosHoy; let i = index;" class="cursor" routerLink="pedido-hoy" (click)="cambiarPagina(pedido._id )" >
+        <th scope="row"> {{ i+1 }} </th>
+        <td> {{ pedido.nombreCliente }} </td>
+        <td>
+            <span *ngFor="let orden of pedido.orden" >
+                {{ orden.cantidad }} {{ orden.producto }}.
+            </span>
+        </td>
+        <td> {{ pedido.fechaHora | date: 'shortTime' }} </td>
+        <td>{{pedido.cuentaTotal}} bs</td>
+      </tr>
+
+      <tr class="bg-success" >
+          <th > </th>
+          <th class="text-white" > Ganancia total </th>
+          <td></td>
+          <td></td>
+          <td class="text-white" > {{ ganancia }} bs </td>
+      </tr>
+    </tbody>
+</table>
+
+<app-pedido-hoy *ngIf="!flag" #childPedido (retroceder)="recibir($event)" [id]="id" ></app-pedido-hoy>
+
+
+  
+  

@@ -33,7 +33,9 @@
 .espacioBoton{
     margin-left: 5px;
 }
-
+.cursor{
+    cursor: pointer;
+}
 
 /* .btn-outline-success {
     margin-left: 5px;

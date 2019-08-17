@@ -20,6 +20,8 @@ import { PizzasComponent } from './components/nuevo-pedido/pizzas.component';
 import { AlitasComponent } from './components/nuevo-pedido/alitas.component';
 import { RefrescosComponent } from './components/nuevo-pedido/refrescos.component';
 import { HeladosComponent } from './components/nuevo-pedido/helados.component';
+import { PedidoHoyComponent } from './components/resumen-dia/pedido-hoy.component';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { HeladosComponent } from './components/nuevo-pedido/helados.component';
     PizzasComponent,
     AlitasComponent,
     RefrescosComponent,
-    HeladosComponent
+    HeladosComponent,
+    PedidoHoyComponent
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,6 @@ const Pedido = require('../models/pedido');
 
 const hoy = new Date();
 
-// const hoy2 = new Date(ano,mes,dia);
-
 // devuelve las comandas del dia de hoy
 router.get('/', async(req,res) => {
     const ano = hoy.getFullYear();
@@ -20,6 +18,19 @@ router.get('/', async(req,res) => {
     }
     
 });
+// busca por id y devuelve un pedido
+router.get('/pedido/:id', async (req,res) => {
+    try {
+        const _id = req.params.id;
+        const pedido = await Pedido.findById( _id ); 
+
+        res.send(pedido);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+
 // recibe el post de nuevos pedidos
 router.post('/nuevo',async(req,res) => {
     const pedido = new Pedido(req.body);
@@ -57,7 +68,6 @@ router.patch('/:id', async (req,res) => {
     }
 
 });
-
 
 // router.get('/nuevo/:id', async(req,res) => {
 //     const _id = req.params.id; 

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     this.nodeService.getComandasHoy()
       .subscribe( data => {
         this.pedidos = data;
-        console.log(this.pedidos);
+        // console.log(this.pedidos);
       });
   }
 
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
     this.nodeService.patchEstado(id)
       .subscribe( data => {
-        console.log(data);
+        // console.log(data);
       });
 
   }

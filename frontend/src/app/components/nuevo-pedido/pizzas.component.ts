@@ -58,7 +58,7 @@ export class PizzasComponent implements OnInit {
     this.cant = porciones;
   }
   
-
+  // aqui enviamos el objeto a la lista de ordenes
   agregarOrden(){
 
     const orden = {
@@ -77,7 +77,7 @@ export class PizzasComponent implements OnInit {
         this.enviarOrden.emit(orden);
         this.router.navigate(['nuevo-pedido']);
         this.tam = '';
-        this.des = '';
+        this.des = 'porciones';
         this.precioFinal = null;
       } else {
         this.alerta = true

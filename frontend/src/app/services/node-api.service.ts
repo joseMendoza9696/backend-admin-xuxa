@@ -27,4 +27,9 @@ export class NodeApiService {
     return this.http.patch(`${this.URL}/${id}`, { "estado": true });
   }
 
+  // buscar el pedido por id
+  getPedido(id) {
+    return this.http.get( `${this.URL}/pedido/${id}` );
+  }
+
 }
