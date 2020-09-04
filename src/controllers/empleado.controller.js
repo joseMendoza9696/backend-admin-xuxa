@@ -12,7 +12,17 @@ login = async (req, res) => {
 }
 
 logout = async (req, res) => {
+    try {
+        // buscamos un solo token ya que podemos tener varios
+        req.empleado.tokens = req.empleado.tokens.filter((token) => {
+            return token.token !== req.token;
+        });
+        await req.empleado.save();
 
+        res.send({ message: 'El usuario salio de su cuenta!' });
+    } catch (error) {
+        res.status(500).send();
+    }
 }
 
 ventasFecha = async (req, res) => {

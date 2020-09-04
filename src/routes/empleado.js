@@ -8,7 +8,7 @@ const { login, logout, ventasFecha } = require('../controllers/empleado.controll
 
 router.post('/emp/login', login );
 
-router.post('/emp/logout', logout );
+router.post('/emp/logout', empleadoAuth, logout );
 
 router.get('/emp/ventasFecha/:date', ventasFecha );
 
