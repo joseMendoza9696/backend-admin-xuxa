@@ -17,6 +17,21 @@ const pedidoSchema = new mongoose.Schema({
     nombre_factura: {
         type: String,
     },
+    orden: [
+        {
+            producto_id: {
+                type: String,
+                required: true
+            },
+            descripcion: {
+                type: String
+            },
+            cantidad: {
+                type: Number,
+                default: 1
+            }
+        }
+    ],
     cuenta_pedido: {
         type: Number,
         required: true,
@@ -26,14 +41,14 @@ const pedidoSchema = new mongoose.Schema({
             }
         }
     },
-
+    tipo: {
+        type: String,
+        required: true,
+        default: 'Llevar'
+    }
 });
 
-pedidoSchema.virtual('ordens',{
-    ref: 'Orden',
-    localField: '_id',
-    foreignField: 'pedido_id'
-});
+
 
 // pedidoSchema.statics.precioTotal = async ( ordenes ) => {
 //     var precio = 0;
