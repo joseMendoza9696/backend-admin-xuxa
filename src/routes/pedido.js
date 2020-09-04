@@ -7,7 +7,7 @@ router.post('/crearPedido', empleadoAuth ,crearPedido);
 
 router.get('/listarPedido/:id', listarPedido);
 
-// url/listarPedido/fecha?fecha=120934z
-router.get('/listarPedido/fecha', listarPedidosFecha);
+// url/pedidosFecha?fecha=2020-09-03
+router.get('/pedidosFecha', empleadoAuth,listarPedidosFecha);
 
 module.exports = router;
