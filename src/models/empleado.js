@@ -36,8 +36,6 @@ empleadoSchema.statics.findCredentials = async (correo, password) => {
 
     const empleado = await Empleado.findOne({ correo });
 
-    console.log(empleado);
-
     if (!empleado){
         throw new Error('Usuario inexistente');
     }

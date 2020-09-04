@@ -29,7 +29,7 @@ const pedidoSchema = new mongoose.Schema({
 
 });
 
-userSchema.virtual('ordens',{
+pedidoSchema.virtual('ordens',{
     ref: 'Orden',
     localField: '_id',
     foreignField: 'pedido_id'

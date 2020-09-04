@@ -21,7 +21,7 @@ const productoSchema = new mongoose.Schema({
     }
 });
 
-userSchema.virtual('Tamanocantidads',{
+productoSchema.virtual('Tamanocantidads',{
     ref: 'Tamanocantidad',
     localField: '_id',
     foreignField: 'producto_id'
