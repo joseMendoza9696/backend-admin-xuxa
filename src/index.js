@@ -6,6 +6,9 @@ require('./db/mongoose');
 const empleadoRouter = require('./routes/empleado');
 const adminRouter = require('./routes/admin');
 
+const pedidoRouter = require('./routes/pedido');
+const productoRouter = require('./routes/producto');
+
 const cors = require('cors');
 const moment = require('moment');
 const app = express();
@@ -20,6 +23,8 @@ app.use( '/empl', express.static('dist/empleado-frontend'));
 
 app.use(empleadoRouter);
 app.use(adminRouter);
+app.use(pedidoRouter);
+app.use(productoRouter);
 
 
 app.listen(port, () => {
