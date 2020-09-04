@@ -3,79 +3,48 @@ const mongoose = require('mongoose');
 const Producto = require('../models/producto');
 
 const pedidoSchema = new mongoose.Schema({
-    nombreCliente: { 
+    nombre_cliente: {
         type: String, 
         required: true 
     },
-    // fecha y hora de creacion
-    creacionFecha: { 
-        type: String,
+    fecha_creacion: {
+        type: Date,
         required: true 
     },
-    creacionHora: {
-        type: String,
-        required: true
-    },
-    // fecha y hora cuando el pedido se ha completado
-    completadoFecha: {
+    nit_factura: {
         type: String,
     },
-    completadoHora: {
-        type: String
+    nombre_factura: {
+        type: String,
     },
-    // id del empleado que completo el pedido
-    completado_por: {
-        type: String
-    },
-    orden:[{
-        id_producto: {
-            type: String,
-            required: true
-        },
-        cantidad: {
-            type: Number,
-            validate(value){
-                if ( value < 0 ) {
-                    throw new Error('La cantidad debe ser positiva');
-                }
-            },
-            default: 1
-        },
-        descripcion: {
-            type: String
-        }
-    }],
-    nit: { 
-        type: String 
-    },
-    nombre: { 
-        type: String 
-    },
-    cuentaTotal: { 
-        type: Number, 
-        required: true, 
+    cuenta_pedido: {
+        type: Number,
+        required: true,
         validate(value) {
             if (value < 0) {
-                throw new Error('Resultado debe ser positivo');
+                throw new Error('Debe ser positivo');
             }
         }
     },
-    estado: {
-        type: Boolean, 
-        default: false
-    }
+
 });
 
-pedidoSchema.statics.precioTotal = async ( ordenes ) => {
-    var precio = 0;
+userSchema.virtual('ordens',{
+    ref: 'Orden',
+    localField: '_id',
+    foreignField: 'pedido_id'
+});
 
-    for (let i = 0; i < ordenes.length; i++) {
-        const producto = await Producto.findById(ordenes[i].id_producto);
-        precio = precio + (ordenes[i].cantidad * producto.precio);
-    }
-
-    return precio;
-}
+// pedidoSchema.statics.precioTotal = async ( ordenes ) => {
+//     var precio = 0;
+//
+//     for (let i = 0; i < ordenes.length; i++) {
+//         const producto = await Producto.findById(ordenes[i].id_producto);
+//         precio = precio + (ordenes[i].cantidad * producto.precio);
+//     }
+//
+//     return precio;
+// }
 
 const Pedido = mongoose.model('Pedido', pedidoSchema);
 module.exports = Pedido;

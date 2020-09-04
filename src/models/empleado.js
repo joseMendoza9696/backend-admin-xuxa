@@ -18,10 +18,6 @@ const empleadoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cargo: {
-        type: String,
-        required: true
-    },
     password: {
         type: String,
         required: true,
@@ -33,42 +29,38 @@ const empleadoSchema = new mongoose.Schema({
             required: true
         }
     }],
-    // indicamos si el empleado sigue trabajando
-    estado: {
-        type: Boolean,
-        default: true
-    }
+
 });
 
-empleadoSchema.statics.findCredentials = async (correo, password) => {
-    
-    const empleado = await Empleado.findOne({ correo });
+// empleadoSchema.statics.findCredentials = async (correo, password) => {
+//
+//     const empleado = await Empleado.findOne({ correo });
+//
+//     console.log(empleado);
+//
+//     if (!empleado){
+//         throw new Error('Usuario inexistente');
+//     }
+//
+//     if (empleado.password === password) {
+//         return empleado;
+//     }
+//     throw new Error('Credenciales incorrectas');
+// }
 
-    console.log(empleado);
+// empleadoSchema.methods.generateAuthToken = async function() {
+//     const empleado = this;
+//     const token = jwt.sign( { _id: empleado._id.toString() }, process.env.EMPLOYEE_SECRET );
+//
+//     empleado.tokens = empleado.tokens.concat({ token: token });
+//     await empleado.save();
+//     return token;
+// }
 
-    if (!empleado){
-        throw new Error('Usuario inexistente');
-    }
-
-    if (empleado.password === password) {
-        return empleado;
-    }
-    throw new Error('Credenciales incorrectas');
-}
-
-empleadoSchema.methods.generateAuthToken = async function() {
-    const empleado = this;
-    const token = jwt.sign( { _id: empleado._id.toString() }, process.env.EMPLOYEE_SECRET );
-
-    empleado.tokens = empleado.tokens.concat({ token: token });
-    await empleado.save();
-    return token;
-}
-
-empleadoSchema.pre('save', async function(next){
-    // verificar si el empleado ha sido creado
-    next();
-});
+// empleadoSchema.pre('save', async function(next){
+//     // verificar si el empleado ha sido creado
+//     next();
+// });
 
 const Empleado = mongoose.model('Empleado', empleadoSchema);
 module.exports = Empleado;

@@ -5,10 +5,6 @@ const productoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tamano_cantidad: {
-        type: String,
-        required: true
-    },
     precio: {
         type: Number,
         required: true,
@@ -18,10 +14,17 @@ const productoSchema = new mongoose.Schema({
             }
         }
     },
-    tipo: {
-        type: String,
-        required: true
+    categoria_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Categoria'
     }
+});
+
+userSchema.virtual('Tamanocantidads',{
+    ref: 'Tamanocantidad',
+    localField: '_id',
+    foreignField: 'producto_id'
 });
 
 const Producto = mongoose.model('Producto', productoSchema);
