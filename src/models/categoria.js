@@ -7,7 +7,7 @@ const categoriaSchema = new mongoose.Schema({
     }
 });
 
-userSchema.virtual('Productos',{
+categoriaSchema.virtual('Productos',{
     ref: 'Producto',
     localField: '_id',
     foreignField: 'categoria_id'

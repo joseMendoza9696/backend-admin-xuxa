@@ -25,12 +25,8 @@ logout = async (req, res) => {
     }
 }
 
-ventasFecha = async (req, res) => {
-
-}
 
 module.exports = {
     login,
     logout,
-    ventasFecha
 }
