@@ -5,7 +5,7 @@ const { crearPedido, listarPedido, listarPedidosFecha } = require('../controller
 
 router.post('/crearPedido', empleadoAuth ,crearPedido);
 
-router.get('/listarPedido/:id', listarPedido);
+router.get('/listarPedido/:id',empleadoAuth, listarPedido);
 
 // url/pedidosFecha?fecha=2020-09-03
 router.get('/pedidosFecha', empleadoAuth,listarPedidosFecha);
