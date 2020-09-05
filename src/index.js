@@ -18,8 +18,8 @@ app.use(express.json());
 // permite que podamos hacer peticiones desde otro server. siempre debe estar antes de las rutas
 app.use(cors({ origin: 'http://localhost:4200' }));
 
-app.use( '/admin', express.static('dist/dashboard-frontend'));
-app.use( '/empl', express.static('dist/empleado-frontend'));
+// app.use( '/admin', express.static('dist/dashboard-frontend'));
+// app.use( '/empl', express.static('dist/empleado-frontend'));
 
 app.use(empleadoRouter);
 app.use(adminRouter);
