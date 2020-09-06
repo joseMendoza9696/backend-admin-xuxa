@@ -25,7 +25,31 @@ listarCategorias = async (req, res) => {
     }
 }
 
+listarProductos = async (req, res) => {
+    try {
+        const productos = await Producto.find({});
+
+        res.status(200).send(productos);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+productoID = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const producto = await Producto.findById(id);
+
+        res.status(200).send(producto);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 module.exports = {
     listarProductoCategoria,
-    listarCategorias
+    listarCategorias,
+    productoID,
+    listarProductos
 }
