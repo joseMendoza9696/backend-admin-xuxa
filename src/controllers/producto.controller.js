@@ -15,6 +15,17 @@ listarProductoCategoria = async (req, res) => {
     }
 }
 
+listarCategorias = async (req, res) => {
+    try {
+        const categorias = await Categoria.find({});
+
+        res.status(200).send(categorias);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 module.exports = {
-    listarProductoCategoria
+    listarProductoCategoria,
+    listarCategorias
 }
