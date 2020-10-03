@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 // app.use( '/admin', express.static('dist/dashboard-frontend'));
-// app.use( '/empl', express.static('dist/empleado-frontend'));
+app.use( '/empl', express.static('dist/empleado-frontend'));
 
 app.use(empleadoRouter);
 app.use(adminRouter);
