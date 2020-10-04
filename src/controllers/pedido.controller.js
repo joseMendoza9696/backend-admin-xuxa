@@ -26,9 +26,14 @@ listarPedido = async (req, res) => { // /emp/pedido/:id
 
 listarPedidosFecha = async (req, res) => { // /emp/pedidos
     const fecha = req.query.fecha;
+    const limit = req.query.limit;
+    const skip = req.query.skip;
 
     try {
-        const pedidos = await Pedido.find({ fecha_creacion: fecha });
+        const pedidos = await Pedido.find({ fecha_creacion: fecha }).
+            limit( parseInt(limit) ).
+            skip( parseInt(skip) ).
+            sort({ hora_creacion: -1 })
 
         res.status(200).send(pedidos);
     } catch (e) {
