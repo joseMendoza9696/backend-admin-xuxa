@@ -41,8 +41,26 @@ listarPedidosFecha = async (req, res) => { // /emp/pedidos
     }
 }
 
+listarPrecioPedidoFecha = async (req, res) => {
+    const fecha = req.query.fecha;
+    let ingresoTotal = 0;
+
+    try {
+        const pedidos = await Pedido.find({ fecha_creacion: fecha });
+
+        await pedidos.forEach( pedido => {
+            ingresoTotal = ingresoTotal + pedido.cuenta_pedido;
+        });
+
+        res.status(200).send({ ingreso: ingresoTotal });
+    } catch (e) {
+
+    }
+}
+
 module.exports = {
     crearPedido,
     listarPedido,
-    listarPedidosFecha
+    listarPedidosFecha,
+    listarPrecioPedidoFecha
 }
