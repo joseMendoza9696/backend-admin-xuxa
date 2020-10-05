@@ -6,7 +6,8 @@ listarProductoCategoria = async (req, res) => {
     let categoria = req.query.categoria;
 
     try {
-        const productos = await Producto.find({ categoria_id: categoria })
+        const productos = await Producto.find({ categoria_id: categoria }).
+            sort({ precio: -1 });
 
         res.status(200).send(productos);
     } catch (e) {
