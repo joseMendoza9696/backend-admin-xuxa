@@ -49,6 +49,13 @@ const pedidoSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: 'Llevar'
+    },
+
+    clima: {
+        type: String,
+    },
+    temperatura: {
+        type: String,
     }
 });
 
