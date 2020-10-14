@@ -52,10 +52,18 @@ const pedidoSchema = new mongoose.Schema({
     },
 
     clima: {
-        type: String,
-    },
-    temperatura: {
-        type: String,
+        id_weather: {
+            type: String,
+        },
+        description: {
+            type: String,
+        },
+        temp: {
+            type: Number
+        },
+        feels_like: {
+            type: Number
+        }
     }
 });
 
