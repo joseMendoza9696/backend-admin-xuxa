@@ -6,26 +6,8 @@ const https = require('https');
 crearPedido = async (req, res) => { // /emp/pedido/nuevo
     const pedido = new Pedido(req.body);
 
-    const api_key = '3ea95b323ca21f1399996784116faef2';
-    const city = 'Riberalta';
-    const units = 'metric';
-    const url = 'https://api.openweathermap.org/data/2.5/weather?'
-
     try{
-        // await Pedido.agregarClima();
-        // await pedido.save();
-        await https.get(`${url}q=${city}&appid=${api_key}&lang=es&units=${units}`, async (res) => {
-            res.on('data', (d) => {
-                d = d.toString()
-                let weather = JSON.parse(d)
-
-                // TODO: fix this
-                pedido.clima.id_weather = weather.weather[0].id
-                pedido.clima.description = weather.weather[0].description
-                pedido.clima.temp = weather.main.temp
-                pedido.clima.temp = weather.main.feels_like
-            })
-        })
+        await pedido.save();
 
         res.status(202).send(pedido);
     } catch (e) {
