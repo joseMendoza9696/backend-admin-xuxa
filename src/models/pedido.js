@@ -68,42 +68,6 @@ const pedidoSchema = new mongoose.Schema({
     }
 });
 
-pedidoSchema.statics.agregarClima = async () => {
-    const api_key = '3ea95b323ca21f1399996784116faef2';
-    const city = 'Riberalta';
-    const units = 'metric';
-    const url = 'https://api.openweathermap.org/data/2.5/weather?'
-    let k = {};
-
-    // return https.get(`${url}q=${city}&appid=${api_key}&lang=es&units=${units}`, async (res) => {
-    //
-    //     // console.log('1', k)
-    //     await res.on('data', (d) => {
-    //         d = d.toString();
-    //         k = JSON.parse(d);
-    //         // return clima;
-    //     });
-    //
-    // });
-
-    return https.get(`${url}q=${city}&appid=${api_key}&lang=es&units=${units}`);
-
-    // await console.log('3',k)
-
-    // return k;
-}
-
-
-// pedidoSchema.statics.precioTotal = async ( ordenes ) => {
-//     var precio = 0;
-//
-//     for (let i = 0; i < ordenes.length; i++) {
-//         const producto = await Producto.findById(ordenes[i].id_producto);
-//         precio = precio + (ordenes[i].cantidad * producto.precio);
-//     }
-//
-//     return precio;
-// }
 
 const Pedido = mongoose.model('Pedido', pedidoSchema);
 module.exports = Pedido;
