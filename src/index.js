@@ -3,11 +3,12 @@ const path = require('path');
 const serveIndex = require('serve-index');
 require('./db/mongoose');
 
-const empleadoRouter = require('./routes/empleado');
 const adminRouter = require('./routes/admin');
 
+const empleadoRouter = require('./routes/empleado');
 const pedidoRouter = require('./routes/pedido');
 const productoRouter = require('./routes/producto');
+const estadisticaRouter = require('./routes/estadisticas');
 
 const cors = require('cors');
 const moment = require('moment');
@@ -25,6 +26,7 @@ app.use(empleadoRouter);
 app.use(adminRouter);
 app.use(pedidoRouter);
 app.use(productoRouter);
+app.use(estadisticaRouter);
 
 
 app.listen(port, () => {
