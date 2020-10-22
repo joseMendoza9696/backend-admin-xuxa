@@ -1,9 +1,14 @@
 const Pedido = require('../models/pedido');
 
-alitasFecha = async (req, res) => {
+alitasTipoFecha = async (req, res) => {
+
+}
+
+pizzasTipoFecha = async (req, res) => {
 
 }
 
 module.exports = {
-    alitasFecha
+    alitasTipoFecha,
+    pizzasTipoFecha
 }
