@@ -30,6 +30,12 @@ const empleadoSchema = new mongoose.Schema({
         }
     }],
 
+    sucursal_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Sucursal'
+    }
+
 });
 
 empleadoSchema.statics.findCredentials = async (correo, password) => {
