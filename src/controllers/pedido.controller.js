@@ -1,8 +1,6 @@
 const Pedido = require('../models/pedido');
 const Producto = require('../models/producto');
 
-const https = require('https');
-
 crearPedido = async (req, res) => { // /emp/pedido/nuevo
     const pedido = new Pedido(req.body);
 
@@ -32,9 +30,10 @@ listarPedidosFecha = async (req, res) => { // /emp/pedidos
     const fecha = req.query.fecha;
     const limit = req.query.limit;
     const skip = req.query.skip;
+    const sucursal = req.query.sucursal
 
     try {
-        const pedidos = await Pedido.find({ fecha_creacion: fecha }).
+        const pedidos = await Pedido.find({ fecha_creacion: fecha, sucursal_id: sucursal }).
             limit( parseInt(limit) ).
             skip( parseInt(skip) ).
             sort({ hora_creacion: -1 })
@@ -50,7 +49,7 @@ listarPrecioPedidoFecha = async (req, res) => {
     let ingresoTotal = 0;
 
     try {
-        const pedidos = await Pedido.find({ fecha_creacion: fecha });
+        const pedidos = await Pedido.find({ fecha_creacion: fecha, sucursal_id: sucursal });
 
         await pedidos.forEach( pedido => {
             ingresoTotal = ingresoTotal + pedido.cuenta_pedido;
@@ -65,13 +64,16 @@ listarPrecioPedidoFecha = async (req, res) => {
 buscarCliente = async (req, res) => {
     const nombre = req.query.nombre;
     const fecha = req.query.fecha;
+    const sucursal = req.query.sucursal
+
     try {
         let pedidos = await Pedido.find({
             nombre_cliente: {
                 $regex: new RegExp(nombre),
                 $options: 'i'
             },
-            fecha_creacion: fecha
+            fecha_creacion: fecha,
+            sucursal_id: sucursal,
         }).sort({ hora_creacion: -1 });
 
         res.status(200).send(pedidos);
