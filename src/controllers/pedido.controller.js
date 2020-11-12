@@ -81,11 +81,22 @@ buscarCliente = async (req, res) => {
     }
 }
 
+actualizarPedidos = async (req, res) => {
+    try {
+        await Pedido.updateMany({  }, { sucursal_id: '5fad9115d6df6211d99ddfc4' })
+
+        res.status(200).send({ message: 'Documentos actualizados' })
+    } catch (e) {
+        res.status(400).send(e)
+    }
+}
+
 
 module.exports = {
     crearPedido,
     listarPedido,
     listarPedidosFecha,
     listarPrecioPedidoFecha,
-    buscarCliente
+    buscarCliente,
+    actualizarPedidos
 }
