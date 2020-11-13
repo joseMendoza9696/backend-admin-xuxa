@@ -65,6 +65,11 @@ const pedidoSchema = new mongoose.Schema({
         feels_like: {
             type: Number
         }
+    },
+    sucursal_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Sucursal'
     }
 });
 
