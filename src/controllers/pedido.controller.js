@@ -46,6 +46,7 @@ listarPedidosFecha = async (req, res) => { // /emp/pedidos
 
 listarPrecioPedidoFecha = async (req, res) => {
     const fecha = req.query.fecha;
+    const sucursal = req.query.sucursal;
     let ingresoTotal = 0;
 
     try {
