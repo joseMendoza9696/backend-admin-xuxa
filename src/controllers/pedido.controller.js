@@ -62,15 +62,15 @@ listarPrecioPedidoFecha = async (req, res) => {
     }
 }
 
-buscarCliente = async (req, res) => {
-    const nombre = req.query.nombre;
+buscador = async (req, res) => {
+    const search = req.query.search;
     const fecha = req.query.fecha;
     const sucursal = req.query.sucursal
 
     try {
         let pedidos = await Pedido.find({
             nombre_cliente: {
-                $regex: new RegExp(nombre),
+                $regex: new RegExp(search),
                 $options: 'i'
             },
             fecha_creacion: fecha,
@@ -84,15 +84,15 @@ buscarCliente = async (req, res) => {
     }
 }
 
-actualizarPedidos = async (req, res) => {
-    try {
-        await Pedido.updateMany({  }, { sucursal_id: '5fad9115d6df6211d99ddfc4' })
-
-        res.status(200).send({ message: 'Documentos actualizados' })
-    } catch (e) {
-        res.status(400).send(e)
-    }
-}
+// actualizarPedidos = async (req, res) => {
+//     try {
+//         await Pedido.updateMany({  }, { sucursal_id: '5fad9115d6df6211d99ddfc4' })
+//
+//         res.status(200).send({ message: 'Documentos actualizados' })
+//     } catch (e) {
+//         res.status(400).send(e)
+//     }
+// }
 
 
 module.exports = {
@@ -100,6 +100,6 @@ module.exports = {
     listarPedido,
     listarPedidosFecha,
     listarPrecioPedidoFecha,
-    buscarCliente,
-    actualizarPedidos
+    buscador,
+    // actualizarPedidos
 }
