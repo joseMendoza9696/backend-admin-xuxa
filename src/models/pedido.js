@@ -25,7 +25,8 @@ const pedidoSchema = new mongoose.Schema({
     orden: [
         {
             producto_id: {
-                type: String,
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Producto',
                 required: true
             },
             descripcion: {

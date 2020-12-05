@@ -36,7 +36,8 @@ listarPedidosFecha = async (req, res) => { // /emp/pedidos
         const pedidos = await Pedido.find({ fecha_creacion: fecha, sucursal_id: sucursal }).
             limit( parseInt(limit) ).
             skip( parseInt(skip) ).
-            sort({ hora_creacion: -1 })
+            sort({ hora_creacion: -1 }).
+            populate('orden.producto_id' )
 
         res.status(200).send(pedidos);
     } catch (e) {
