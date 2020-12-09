@@ -76,7 +76,8 @@ buscador = async (req, res) => {
             },
             fecha_creacion: fecha,
             sucursal_id: sucursal,
-        }).sort({ hora_creacion: -1 });
+        }).sort({ hora_creacion: -1 }).
+        populate('orden.producto_id' );
 
         res.status(200).send(pedidos);
 
