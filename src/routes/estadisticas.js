@@ -1,8 +1,9 @@
 const express = require('express');
 const router = new express.Router();
 const empleadoAuth = require('../middleware/empleadoAuth');
-const { alitasTipoFecha, pizzasTipoFecha } = require('../controllers/estadisticas.controller')
+const { alitas } = require('../controllers/estadisticas.controller')
 
-// rutas
+// url/estadistica/alitas?fecha=...&sucursal=...
+router.get('/estadistica/alitas', empleadoAuth, alitas)
 
 module.exports = router;
