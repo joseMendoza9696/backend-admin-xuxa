@@ -71,6 +71,10 @@ const pedidoSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Sucursal'
+    },
+    completado: {
+        type: Boolean,
+        default: false
     }
 });
 
