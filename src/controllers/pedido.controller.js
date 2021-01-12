@@ -87,6 +87,40 @@ buscador = async (req, res) => {
     }
 }
 
+actualizarPedido = async (req, res) => {
+    const pedidoId = req.query.pedido
+    const sucursal = req.query.sucursal
+
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['completado'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({error: 'Invalid Updates!'})
+    }
+
+    try {
+        const pedido = await Pedido.findOne({ _id: pedidoId, sucursal_id: sucursal });
+
+        if (!pedido) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            pedido[update] = req.body[update];
+        });
+        await pedido.save();
+
+        res.send(pedido);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+
 // actualizarPedidos = async (req, res) => {
 //     try {
 //         await Pedido.updateMany({  }, { sucursal_id: '5fad9115d6df6211d99ddfc4' })
@@ -104,5 +138,6 @@ module.exports = {
     listarPedidosFecha,
     listarPrecioPedidoFecha,
     buscador,
+    actualizarPedido
     // actualizarPedidos
 }

@@ -6,6 +6,7 @@ const {
     listarPedido,
     listarPedidosFecha,
     listarPrecioPedidoFecha,
+    actualizarPedido,
     buscador } = require('../controllers/pedido.controller');
 
 router.post('/crearPedido', empleadoAuth ,crearPedido);
@@ -17,6 +18,8 @@ router.get('/pedidosFecha', empleadoAuth,listarPedidosFecha);
 router.get('/pedidosFechaPrecio', empleadoAuth, listarPrecioPedidoFecha);
 // url/buscarCliente?search=...&fecha=...&sucursal=...
 router.get('/buscar', empleadoAuth, buscador);
+// url/actualizarPedido?pedido=...?sucursal=...
+router.patch('/actualizarPedido', empleadoAuth, actualizarPedido)
 
 //actualizar pedidos
 // router.get('/actualizar-emergency', empleadoAuth, actualizarPedidos )

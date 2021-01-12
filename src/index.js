@@ -22,7 +22,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 // permite que podamos hacer peticiones desde otro server. siempre debe estar antes de las rutas
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: '*' }));
 
 // app.use( '/admin', express.static('dist/dashboard-frontend'));
 app.use( '/empl', express.static('dist/empleado-frontend'));
@@ -55,7 +55,8 @@ io.on('connection', (socket) => {
         const employee = getEmployee(socket.id)
 
         // envia a todas las conexiones excepto al que esta enviando
-        socket.broadcast.to(employee.room).emit('recibirComanda')
+        // socket.broadcast.to(employee.room).emit('recibirComanda')
+        io.to(employee.room).emit('recibirComanda')
 
         callback()
     })
