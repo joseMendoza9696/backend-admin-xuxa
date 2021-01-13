@@ -40,6 +40,7 @@ const getEmployee = ( id ) => {
 
 const removeEmployee = (id) => {
     const index = employees.findIndex((employee) => employee.id === id );
+    console.log('employess: ',employees)
 
     if ( index !== -1 ) {
         return employees.splice( index, 1 )[0];
