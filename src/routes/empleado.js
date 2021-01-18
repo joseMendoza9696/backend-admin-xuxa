@@ -17,11 +17,11 @@ router.get('/tesis/web-robots', tesisWeb)
 router.get('/robots.txt', robots)
 router.get('/59gt1', flagRobots)
 
-router.get('/tesis/web-put', webDELETE)
-router.patch('/tesis/web-put', webDELETE)
-router.put('/tesis/web-put', webDELETE)
-router.post('/tesis/web-put', webDELETE)
-router.delete('/tesis/web-put', webDELETE)
+router.get('/tesis/web-erase', webDELETE)
+router.patch('/tesis/web-erase', webDELETE)
+router.put('/tesis/web-erase', webDELETE)
+router.post('/tesis/web-erase', webDELETE)
+router.delete('/tesis/web-erase', webDELETE)
 
 module.exports = router;
 
