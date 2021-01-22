@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "12.18.2"
+  },
   "scripts": {
-    "start": "node src/index.js",
     "dev": "env-cmd -f ./src/config/dev.env nodemon src/index.js"
+    "start": "node src/index.js",
   },
   "keywords": [],
   "author": "",
