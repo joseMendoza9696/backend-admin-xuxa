@@ -8,13 +8,17 @@ const pedidoSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    fecha_creacion: {
-        type: String,
-        required: true 
-    },
-    hora_creacion: {
-      type: String,
-      required: true
+    // fecha_creacion: {
+    //     type: String,
+    //     required: true
+    // },
+    // hora_creacion: {
+    //   type: String,
+    //   required: true
+    // },
+    fecha_creacion : {
+        type: Date,
+        required: true
     },
     nit_factura: {
         type: String,
