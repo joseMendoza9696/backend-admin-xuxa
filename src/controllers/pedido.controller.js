@@ -1,6 +1,4 @@
 const Pedido = require('../models/pedido');
-const Producto = require('../models/producto');
-const { ObjectID } = require('mongodb');
 
 crearPedido = async (req, res) => { // /emp/pedido/nuevo
     const pedido = new Pedido(req.body);
@@ -10,7 +8,6 @@ crearPedido = async (req, res) => { // /emp/pedido/nuevo
 
         res.status(202).send(pedido);
     } catch (e) {
-        console.log(e)
         res.status(400).send(e);
     }
 }
